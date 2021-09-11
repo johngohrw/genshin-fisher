@@ -7,7 +7,7 @@ Automated tool to help you fish in Genshin Impact.
 ![](/screenshot.png "damned paimon")
 
 ## Usage
-Just run the .exe and go cast a bait somewhere.
+Just run the .exe and go cast a bait somewhere. it autodetects the bite for you
 
 ## Optimal settings
 - 1600x900 windowed
