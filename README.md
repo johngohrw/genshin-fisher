@@ -10,5 +10,8 @@ It still performs badly on fishes that has annoyingly high rates of shifting (th
 
 ## Optimal settings
 - 1600x900 windowed
+- Run executable as administrator (if it's not clicking for you)
 
 Most resolutions other than 1600x900 not supported/optimal yet. I could add support for other screen resolutions but it involves taking many screenshots of the fishing bar and manually cropping and saving them all to be used in template matching. too tedious for me rn.
+
+
