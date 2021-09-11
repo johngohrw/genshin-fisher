@@ -4,7 +4,7 @@ Automated tool to help you fish in Genshin Impact.
 
 [Download](https://github.com/johngohrw/genshin-fisher/releases/download/Alpha/GenshinFisher.zip)
 
-![](/screenshot.png "damned paimon")
+![](/screenshot.png "")
 
 ## Usage
 Just run the .exe and go cast a bait somewhere. it autodetects the bite for you
