@@ -1,3 +1,6 @@
 # Genshin Fisher
 
-Automated tool that catch fishes for you in Genshin Impact.
+Automated tool to help you fish in Genshin Impact.
+
+![](/screenshot.png "damned paimon")
+
