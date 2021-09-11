@@ -13,7 +13,7 @@ Just run the .exe and go cast a bait somewhere. it autodetects the bite for you
 - 1600x900 windowed
 - Run executable as administrator (if it's not clicking for you)
 
-Most resolutions other than 1600x900 not supported/optimal yet. I could add support for other screen resolutions but it involves taking many screenshots of the fishing bar and manually cropping and saving them all to be used in template matching. too tedious.
+Most resolutions other than 1600x900 not supported/optimal yet. I could add support for other screen resolutions but it involves taking many screenshots of the fishing bar and manually cropping and saving them all to be used in template matching, but it's too tedious.
 
 ## Current performance
 
