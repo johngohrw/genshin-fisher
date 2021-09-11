@@ -4,6 +4,8 @@ Automated tool to help you fish in Genshin Impact.
 
 ![](/screenshot.png "damned paimon")
 
+It still performs badly on fishes that has annoyingly high rates of shifting (the clicking algorithm is reactive and not predictive yet) but can easily handle more docile fishes like the pufferfishes and the koi fishes, which is good enough for now I suppose.
+
 ## Optimal settings
 - 1600x900 windowed
 
