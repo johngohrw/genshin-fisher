@@ -2,7 +2,7 @@
 
 Automated tool to help you fish in Genshin Impact.
 
-[Download](https://github.com/johngohrw/genshin-fisher/releases/download/Alpha/GenshinFisher.zip).
+[Download](https://github.com/johngohrw/genshin-fisher/releases/download/Alpha/GenshinFisher.zip)
 
 ![](/screenshot.png "damned paimon")
 
