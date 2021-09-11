@@ -6,6 +6,10 @@ Automated tool to help you fish in Genshin Impact.
 
 ![](/screenshot.png "damned paimon")
 
+## Usage
+Just run the .exe and go cast a bait somewhere.
+
+
 It still performs badly on fishes that has annoyingly high rates of shifting (the clicking algorithm is reactive and not predictive yet) but can easily handle more docile fishes like the pufferfishes and the koi fishes, which is good enough for now I suppose.
 
 ## Optimal settings
