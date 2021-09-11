@@ -6,13 +6,13 @@ import time
 method = cv2.TM_CCOEFF_NORMED
 
 # template matching images
-bite = cv2.imread('gotabite3.png', cv2.IMREAD_UNCHANGED)
+bite = cv2.imread('templates/gotabite3.png', cv2.IMREAD_UNCHANGED)
 bite_rows,bite_cols = bite.shape[:2]
-leftbound = cv2.imread('left4.png')
+leftbound = cv2.imread('templates/left4.png')
 leftbound_rows,leftbound_cols = leftbound.shape[:2]
-rightbound = cv2.imread('right4.png')
+rightbound = cv2.imread('templates/right4.png')
 rightbound_rows,rightbound_cols = rightbound.shape[:2]
-cursor = cv2.imread('cursor3.png')
+cursor = cv2.imread('templates/cursor3.png')
 cursor_rows,cursor_cols = cursor.shape[:2]
 
 # template matching threshold
