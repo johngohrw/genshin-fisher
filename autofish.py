@@ -109,25 +109,29 @@ while True:
                 r_x_cache = None
 
         # print(l_x, " - ", c_x," - ", r_x)
-            
         
-        if (l_x is not None and c_x is not None):
-            if (c_x[0] < l_x[0]):
+        if (r_x and c_x):
+            rx = r_x[0]
+            cx = c_x[0]
+            if (cx + 100 < rx):
+                print("    <  I------->")
                 pyautogui.mouseDown()
                 time.sleep(0.2)
                 pyautogui.mouseUp()
-                print("click", "I  <      >")
-        elif (r_x is not None and c_x is not None):
-            if (c_x[0] + 100 < r_x[0] ):
+            elif (cx + 40 < rx):
+                print("    <     I---->")
                 pyautogui.mouseDown()
-                time.sleep(0.16)
+                time.sleep(0.02)
                 pyautogui.mouseUp()
-                print("click", "<I--------->")
-            elif (c_x[0] + 20 < r_x[0]):
+            
+        if (l_x and c_x):
+            lx = l_x[0]
+            cx = c_x[0]
+            if (cx < lx):
+                print("I---<          >")
                 pyautogui.mouseDown()
-                time.sleep(0.06)
+                time.sleep(0.2)
                 pyautogui.mouseUp()
-                print("click", "<         I->")
 
         # cv2.imshow('output', genshinTopRegion)
         # key = cv2.waitKey(1)
