@@ -5,15 +5,30 @@ import numpy as np
 import time
 method = cv2.TM_CCOEFF_NORMED
 
-# template matching images
+# load template matching images
 bite = cv2.imread('templates/gotabite3.png', cv2.IMREAD_UNCHANGED)
+
+left1 = cv2.imread('templates/proper/left_1.png')
+left2 = cv2.imread('templates/proper/left_2.png')
+left3 = cv2.imread('templates/proper/left_3.png')
+left4 = cv2.imread('templates/proper/left_4.png')
+right1 = cv2.imread('templates/proper/right_1.png')
+right2 = cv2.imread('templates/proper/right_2.png')
+right3 = cv2.imread('templates/proper/right_3.png')
+right4 = cv2.imread('templates/proper/right_4.png')
+cursor1 = cv2.imread('templates/proper/cursor_1.png')
+cursor2 = cv2.imread('templates/proper/cursor_2.png')
+cursor3 = cv2.imread('templates/proper/cursor_3.png')
+cursor4 = cv2.imread('templates/proper/cursor_4.png')
+
+left_templates = [left1, left2, left3, left4]
+right_templates = [right1, right2, right3, right4]
+cursor_templates = [cursor1, cursor2, cursor3, cursor4]
+
 bite_rows,bite_cols = bite.shape[:2]
-leftbound = cv2.imread('templates/left4.png')
-leftbound_rows,leftbound_cols = leftbound.shape[:2]
-rightbound = cv2.imread('templates/right4.png')
-rightbound_rows,rightbound_cols = rightbound.shape[:2]
-cursor = cv2.imread('templates/cursor3.png')
-cursor_rows,cursor_cols = cursor.shape[:2]
+# leftbound_rows,leftbound_cols = leftbound.shape[:2]
+# rightbound_rows,rightbound_cols = rightbound.shape[:2]
+# cursor_rows,cursor_cols = cursor.shape[:2]
 
 # template matching threshold
 threshold = 0.8
@@ -59,25 +74,40 @@ while True:
             b_cache_delay = 0
             
         # # match template with whatever's on screen
-        left_result =  cv2.matchTemplate(genshinTopRegion, leftbound, method)
-        right_result =  cv2.matchTemplate(genshinTopRegion, rightbound, method)
-        cursor_result =  cv2.matchTemplate(genshinTopRegion, cursor, method)
-
-        # get minmax and accuracy value
-        _, l_val, _, l_x = cv2.minMaxLoc(left_result)
-        _, r_val, _, r_x = cv2.minMaxLoc(right_result)
-        _, c_val, _, c_x = cv2.minMaxLoc(cursor_result)
-        
-        # print(l_val, r_val, c_val)
-
+        leftmax = 0
+        for image in left_templates:
+            left_result = cv2.matchTemplate(genshinTopRegion, image, method)
+            _, l_val, _, l_x = cv2.minMaxLoc(left_result)
+            if l_val > leftmax:
+                leftmax = l_val
+                left_rows,left_cols = image.shape[:2]
+        l_val = leftmax
         if (l_val >= threshold):
-            cv2.rectangle(genshinTopRegion, l_x,(l_x[0]+leftbound_cols,l_x[1]+leftbound_rows),(0,0,255),1)
+            cv2.rectangle(genshinTopRegion, l_x,(l_x[0]+left_cols,l_x[1]+left_rows),(0,0,255),1)
             l_x_cache = l_x
+            
+        rightmax = 0
+        for image in right_templates:
+            right_result = cv2.matchTemplate(genshinTopRegion, image, method)
+            _, r_val, _, r_x = cv2.minMaxLoc(right_result)
+            if r_val > rightmax:
+                rightmax = r_val
+                right_rows,right_cols = image.shape[:2]
+        r_val = rightmax
         if (r_val >= threshold):
-            cv2.rectangle(genshinTopRegion, r_x,(r_x[0]+leftbound_cols,r_x[1]+leftbound_rows),(255,0,0),1)
+            cv2.rectangle(genshinTopRegion, r_x,(r_x[0]+right_cols,r_x[1]+right_rows),(0,0,255),1)
             r_x_cache = r_x
+        
+        cursormax = 0
+        for image in cursor_templates:
+            cursor_result = cv2.matchTemplate(genshinTopRegion, image, method)
+            _, c_val, _, c_x = cv2.minMaxLoc(cursor_result)
+            if c_val > cursormax:
+                cursormax = c_val
+                cursor_rows,cursor_cols = image.shape[:2]
+        c_val = cursormax
         if (c_val >= threshold):
-            cv2.rectangle(genshinTopRegion, c_x,(c_x[0]+cursor_cols,c_x[1]+cursor_rows),(0,255,0),1)
+            cv2.rectangle(genshinTopRegion, c_x,(c_x[0]+cursor_cols,c_x[1]+cursor_rows),(0,0,255),1)
             c_x_cache = c_x
         
         # process caches if its not found
@@ -108,7 +138,7 @@ while True:
                 r_x = None
                 r_x_cache = None
 
-        # print(l_x, " - ", c_x," - ", r_x)
+        print(l_x, " - ", c_x," - ", r_x)
         
         if (r_x and c_x):
             rx = r_x[0]
@@ -133,9 +163,7 @@ while True:
                 time.sleep(0.2)
                 pyautogui.mouseUp()
 
-        # cv2.imshow('output', genshinTopRegion)
-        # key = cv2.waitKey(1)
-        # if key == 27:
-        #     cv2.destroyAllWindows()
-
-    # time.sleep(0.001)
+        cv2.imshow('output', genshinTopRegion)
+        key = cv2.waitKey(1)
+        if key == 27:
+            cv2.destroyAllWindows()
