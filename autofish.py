@@ -3,11 +3,28 @@ import pyautogui
 import pygetwindow as gw
 import numpy as np
 import time
-method = cv2.TM_CCOEFF_NORMED
+import getopt, sys
 
+method = cv2.TM_CCOEFF_NORMED
 showBoundingBoxes = False
 printXLocations = False
-printClickEvents = False
+printClickEvents = True
+
+# process launch arguments
+argumentList = sys.argv[1:]
+options = "bx:"
+long_options = ["showbox", "printx"]
+try:
+    arguments, values = getopt.getopt(argumentList, options, long_options)
+    for currentArgument, currentValue in arguments:
+        if currentArgument in ("-b", "--showbox"):
+            print ("Showing bounding boxes")
+            showBoundingBoxes = True
+        elif currentArgument in ("-x", "--printx"):
+            printXLocations = True
+            print ("x")
+except getopt.error as err:
+    print (str(err))
 
 # load template matching images
 bite = cv2.imread('templates/gotabite3.png', cv2.IMREAD_UNCHANGED)
@@ -44,10 +61,15 @@ r_x_cache = None;
 r_x_cache_delay = 0;
 b_cache_delay = 0;
 
+
+print("Detecting Genshin window..")
 while True:
     genshinWindow = gw.getWindowsWithTitle("Genshin Impact")[0]
     # detecting genshin window
-    if (genshinWindow and genshinWindow.top > -100 and genshinWindow.left > -100):
+    if (not genshinWindow):
+        print("No window named 'Genshin Impact' detected, quitting..")
+        quit()
+    elif (genshinWindow and genshinWindow.top > -100 and genshinWindow.left > -100):
         # genshin window is active
         w, h, x, y =  genshinWindow.width, genshinWindow.height, genshinWindow.left, genshinWindow.top
 
@@ -65,7 +87,7 @@ while True:
             _, b_val, _, b_x = cv2.minMaxLoc(bite_result)
         b_cache_delay += 1
         if (b_val >= bite_threshold and b_val <= 1 and b_cache_delay > bite_cache_delay_threshold):
-            print("bite detected, start fishing")
+            print("Bite detected, start fishing")
             pyautogui.mouseDown()
             time.sleep(0.5)
             pyautogui.mouseUp()
@@ -147,17 +169,17 @@ while True:
         if (r_x and c_x):
             rx = r_x[0]
             cx = c_x[0]
-            if (cx + 100 < rx):
+            if (cx + 80 < rx):
                 if (printClickEvents):
-                    print("    <  I------->")
+                    print("    <  I------->  click!")
                 pyautogui.mouseDown()
-                time.sleep(0.2)
+                time.sleep(0.14)
                 pyautogui.mouseUp()
-            elif (cx + 40 < rx):
+            elif (cx + 25 < rx):
                 if (printClickEvents):
-                    print("    <     I---->")
+                    print("    <     I---->  click")
                 pyautogui.mouseDown()
-                time.sleep(0.02)
+                time.sleep(0.01)
                 pyautogui.mouseUp()
             
         if (l_x and c_x):
@@ -165,9 +187,9 @@ while True:
             cx = c_x[0]
             if (cx < lx):
                 if (printClickEvents):
-                    print("I---<          >")
+                    print("I---<          >  CLICK!!")
                 pyautogui.mouseDown()
-                time.sleep(0.3)
+                time.sleep(0.22)
                 pyautogui.mouseUp()
 
         
@@ -176,3 +198,5 @@ while True:
             key = cv2.waitKey(1)
             if key == 27:
                 cv2.destroyAllWindows()
+
+
