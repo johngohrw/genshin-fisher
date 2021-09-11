@@ -112,54 +112,26 @@ while True:
             
         
         if (l_x is not None and c_x is not None):
-            # I  <  >
             if (c_x[0] < l_x[0]):
+                pyautogui.mouseDown()
+                time.sleep(0.2)
+                pyautogui.mouseUp()
+                print("click", "I  <      >")
+        elif (r_x is not None and c_x is not None):
+            if (c_x[0] + 100 < r_x[0] ):
                 pyautogui.mouseDown()
                 time.sleep(0.16)
                 pyautogui.mouseUp()
-
-                print("click", "I  <      >")
-
-        if (r_x is not None and c_x is not None):
-            # I--100-<--->
-            if (c_x[0] + 80 < r_x[0] ):
+                print("click", "<I--------->")
+            elif (c_x[0] + 20 < r_x[0]):
                 pyautogui.mouseDown()
-                time.sleep(0.12)
+                time.sleep(0.06)
                 pyautogui.mouseUp()
-                print("click", "<I         >")
-             # <  I--20-->
-            elif (c_x[0] + 40 < r_x[0]):
-                pyautogui.mouseDown()
-                time.sleep(0.05)
-                pyautogui.mouseUp()
-                print("click", "<         I >")
+                print("click", "<         I->")
 
-        # if (l_x is not None and c_x is not None):
-        #     if (l_x[0] > c_x[0]):
-        #         clicktime = 0.0005 * (l_x[0] - c_x[0]) + 0.1
-        #         pyautogui.mouseDown()
-        #         time.sleep(clicktime)
-        #         pyautogui.mouseUp()
-        #         print("click", "I  <      >", c_x[0], l_x[0], clicktime, "s")
+        # cv2.imshow('output', genshinTopRegion)
+        # key = cv2.waitKey(1)
+        # if key == 27:
+        #     cv2.destroyAllWindows()
 
-        # if (r_x is not None and c_x is not None):
-        #     # I--70-<--->
-        #     if (c_x[0] + 70 < r_x[0] ):
-        #         pyautogui.mouseDown()
-        #         time.sleep(0.12)
-        #         pyautogui.mouseUp()
-        #         print("click", "<I         >", c_x[0] + 70, r_x[0])
-        #      # <  I--20-->
-        #     elif (c_x[0] + 10 < r_x[0]):
-        #         pyautogui.mouseDown()
-        #         time.sleep(0.05)
-        #         pyautogui.mouseUp()
-        #         print("click", "<         I >", c_x[0] + 30, r_x[0])
-                
-    
-        cv2.imshow('output', genshinTopRegion)
-        key = cv2.waitKey(1)
-        if key == 27:
-            cv2.destroyAllWindows()
-
-    time.sleep(0.001)
+    # time.sleep(0.001)
